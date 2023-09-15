@@ -49,7 +49,9 @@ export class AuthService {
     return this.http.post<ResAuth>(`${this.apiUrl}/login`, user).pipe(
       tap((res) => {
         this.id = res.id;
-        localStorage.setItem('id', res.id.toString());
+        if (res.id) {
+          localStorage.setItem('id', res.id.toString());
+        }
         this.isLoged(true);
       }),
       tap((res) => {
@@ -64,7 +66,9 @@ export class AuthService {
     return this.http.post<ResAuth>(`${this.apiUrl}/user/register`, user).pipe(
       tap((res) => {
         this.id = res.id;
-        localStorage.setItem('id', res.id.toString());
+        if (res.id) {
+          localStorage.setItem('id', res.id.toString());
+        }
         this.isLoged(true);
       }),
       tap((res) => {
