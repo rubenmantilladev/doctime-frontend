@@ -1,3 +1,3 @@
 export const environment = {
-  API_URL: 'https://king-prawn-app-mdmra.ondigitalocean.app/',
+  API_URL: 'https://king-prawn-app-mdmra.ondigitalocean.app',
 };

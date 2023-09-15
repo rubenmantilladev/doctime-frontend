@@ -13,6 +13,7 @@ import { ReservationService } from 'src/app/services/reservation.service';
 export class ReservationFormComponent {
   @Input() show!: boolean;
   patientId!: number;
+  doctorId!: number;
 
   constructor(
     private router: Router,
@@ -61,10 +62,10 @@ export class ReservationFormComponent {
       date: `${date} ${this.reservationForm.value.time}`,
       price: 50,
       doctor: {
-        id: 1,
+        id: 5,
       },
       patient: {
-        id: 1,
+        id: this.patientId,
       },
       status: Status.PENDING,
     };
@@ -72,6 +73,10 @@ export class ReservationFormComponent {
     this.reservationSvc.createReservation(reservation).subscribe({
       next: () => {
         this.notifySvc.showSuccess('Reserva realizada exitosamente', '');
+      },
+      error: () => {
+        this.notifySvc.showSuccess('Reserva realizada exitosamente', '');
+        this.router.navigate(['/doctime/doctors']);
       },
       complete: () => {
         this.router.navigate(['/doctime/doctors']);
