@@ -18,6 +18,7 @@ export class AuthService {
   public token?: string;
   private isLogedIn = new BehaviorSubject<boolean>(false);
   public isLogedIn$ = this.isLogedIn.asObservable();
+  public logeado = false;
 
   constructor(private http: HttpClient) {
     if (localStorage.getItem('id')) {
@@ -51,7 +52,7 @@ export class AuthService {
         localStorage.setItem('id', res.id.toString());
         this.isLoged(true);
         if (this.isLogedIn$) {
-          localStorage.setItem('logedin', this.isLogedIn$.toString());
+          localStorage.setItem('logedin', this.logeado.toString());
         }
       }),
       tap((res) => {
